@@ -19,7 +19,11 @@ module.exports = function (file, callback){
 
       var metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
 
-      exec('security cms -D -i embedded.mobileprovision > Provisioning.plist', { cwd: path }, function() {
+      exec('security cms -D -i embedded.mobileprovision > Provisioning.plist', { cwd: path }, function(error) {
+        if(error){
+          throw error;
+        }
+
         var provisioning = plist.parse(fs.readFileSync(path + 'Provisioning.plist', 'utf8'));
         delete provisioning.DeveloperCertificates;
 
