@@ -11,6 +11,8 @@ var glob = require("glob");
 
 var output = new tmp.Dir();
 
+var provisionFilename = 'Provisioning.plist';
+
 module.exports = function (file, callback){
   var data = {};
 
@@ -21,16 +23,16 @@ module.exports = function (file, callback){
 
       data.metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
 
-      if(!fs.existsSync(path + 'Provisioning.plist')){
+      if(!fs.existsSync(path + provisionFilename)){
         return callback(null, data);
       }
 
-      exec('security cms -D -i embedded.mobileprovision > Provisioning.plist', { cwd: path }, function(error) {
+      exec('security cms -D -i embedded.mobileprovision > ' + provisionFilename, { cwd: path }, function(error) {
         if(error){
           return callback(error);
         }
 
-        data.provisioning = plist.parse(fs.readFileSync(path + 'Provisioning.plist', 'utf8'));
+        data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
         delete data.provisioning.DeveloperCertificates;
 
         rimraf.sync(output.path);
