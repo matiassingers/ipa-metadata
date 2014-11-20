@@ -32,7 +32,10 @@
     "unzip": "0.1.11",
     "temporary": "0.0.8",
     "glob": "4.2.0",
-    "rimraf": "2.2.8"
+    "rimraf": "2.2.8",
+    "meow": "2.0.0",
+    "cli-table": "0.3.1",
+    "lodash": "2.4.1"
   },
   "devDependencies": {
     "mocha": "*"

@@ -3,30 +3,66 @@
 
 var pkg = require('./package.json');
 var ipaMetadataParser = require('./');
-var argv = process.argv.slice(2);
+var meow = require('meow');
 
-function help() {
-  console.log([
+var Table = require('cli-table');
+var _ = require('lodash');
+
+var cli = meow({
+  help: [
     '',
       '  ' + pkg.description,
     '',
     '  Example',
     '    ipa-metadata-parser ',
     ''
-  ].join('\n'));
+  ].join('\n')
+});
+
+function format(value) {
+  if(!_.isPlainObject(value)) {
+    return value;
+  }
+
+  var string = [];
+  _.each(value, function(value, key) {
+    string.push(key, ': ', format(value), '\n');
+  });
+  string.pop();
+
+  return string.join('');
 }
 
-if (argv.indexOf('--help') !== -1) {
-  help();
-  return;
+function verboseFormatting(data){
+  var types = Object.keys(data);
+
+  _.each(types, function(type){
+    var table = new Table();
+    _.each(data[type], function(value, key){
+      table.push([key, format(value)]) ;
+    });
+
+    console.log(table.toString());
+  });
 }
 
-if (argv.indexOf('--version') !== -1) {
-  console.log(pkg.version);
-  return;
-}
+ipaMetadataParser(cli.input[0], function(data){
+  if(cli.flags.verbose){
+    return verboseFormatting(data);
+  }
 
+  var types = {
+    metadata: ['CFBundleDisplayName', 'CFBundleIdentifier', 'CFBundleShortVersionString', 'CFBundleVersion'],
+    provisioning: ['Name', 'TeamIdentifier', 'TeamName', 'Entitlements']
+  };
 
-ipaMetadataParser(argv[0], function(){
+  var table = new Table();
+  _.each(types, function(keys, index) {
+    _.each(keys, function(key) {
+      var value = data[index][key];
+      table.push([key, format(value)]);
+    });
+  });
 
+  console.log(table.toString());
 });
