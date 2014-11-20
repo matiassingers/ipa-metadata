@@ -13,8 +13,16 @@ $ npm install --save ipa-metadata-parser
 ```js
 var ipaMetadataParser = require('ipa-metadata-parser');
 
-ipaMetadataParser()
-
+ipaMetadataParser('Facebook.ipa', function(data){
+  console.log(data);
+  
+  // { metadata: 
+  //    { CFBundleName: 'Facebook',
+  //      ... },
+  //   provisioning:
+  //    { TeamName: 'Facebook Inc.',
+  //      ... } }
+});
 ```
 
 
@@ -25,10 +33,12 @@ $ npm install --global ipa-metadata-parser
 ```
 
 ```sh
-$ ipa-metadata-parser --help
+$ ipa-metadata --help
 
   Example
-    ipa-metadata-parser
+    ipa-metadata Facebook.ipa
+    
+    ipa-metadata Facebook.ipa --verbose
     
 ```
 
