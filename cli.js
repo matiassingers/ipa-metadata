@@ -2,7 +2,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var ipaMetadataParser = require('./');
+var ipaMetadata = require('./');
 var meow = require('meow');
 
 var Table = require('cli-table');
@@ -65,7 +65,7 @@ function verboseFormatting(data){
   });
 }
 
-ipaMetadataParser(cli.input[0], function(data){
+ipaMetadata(cli.input[0], function(data){
   if(cli.flags.verbose){
     return verboseFormatting(data);
   }

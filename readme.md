@@ -1,19 +1,19 @@
-# ipa-metadata-parser [![Build Status](http://img.shields.io/travis/matiassingers/ipa-metadata-parser.svg?style=flat-square)](https://travis-ci.org/matiassingers/ipa-metadata-parser) [![Dependency Status](http://img.shields.io/gemnasium/matiassingers/ipa-metadata-parser.svg?style=flat-square)](https://gemnasium.com/matiassingers/ipa-metadata-parser)
+# ipa-metadata [![Build Status](http://img.shields.io/travis/matiassingers/ipa-metadata.svg?style=flat-square)](https://travis-ci.org/matiassingers/ipa-metadata) [![Dependency Status](http://img.shields.io/gemnasium/matiassingers/ipa-metadata.svg?style=flat-square)](https://gemnasium.com/matiassingers/ipa-metadata)
 > extract metadata and provisioning information about an .ipa file
 
 ## Install
 
 ```sh
-$ npm install --save ipa-metadata-parser
+$ npm install --save ipa-metadata
 ```
 
 
 ## Usage
 
 ```js
-var ipaMetadataParser = require('ipa-metadata-parser');
+var ipaMetadata = require('ipa-metadata');
 
-ipaMetadataParser('Facebook.ipa', function(data){
+ipaMetadata('Facebook.ipa', function(data){
   console.log(data);
   
   // { metadata: 
@@ -29,7 +29,7 @@ ipaMetadataParser('Facebook.ipa', function(data){
 ## CLI
 
 ```sh
-$ npm install --global ipa-metadata-parser
+$ npm install --global ipa-metadata
 ```
 
 ```sh

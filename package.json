@@ -1,5 +1,5 @@
 {
-  "name": "ipa-metadata-parser",
+  "name": "ipa-metadata",
   "version": "0.1.0",
   "description": "extract metadata and provisioning information about an .ipa file",
   "main": "index.js",
@@ -10,7 +10,6 @@
     "node": ">=0.10.0"
   },
   "bin": {
-    "ipa-metadata-parser": "cli.js",
     "ipa-metadata": "cli.js"
   },
   "files": [
@@ -19,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/matiassingers/ipa-metadata-parser"
+    "url": "https://github.com/matiassingers/ipa-metadata"
   },
   "author": "Matias Singers <mail@matiassingers.com> (http://mts.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matiassingers/ipa-metadata-parser/issues"
+    "url": "https://github.com/matiassingers/ipa-metadata/issues"
   },
-  "homepage": "https://github.com/matiassingers/ipa-metadata-parser",
+  "homepage": "https://github.com/matiassingers/ipa-metadata",
   "dependencies": {
     "plist": "1.1.0",
     "unzip": "0.1.11",
