@@ -10,7 +10,8 @@
     "node": ">=0.10.0"
   },
   "bin": {
-    "ipa-metadata-parser": "cli.js"
+    "ipa-metadata-parser": "cli.js",
+    "ipa-metadata": "cli.js"
   },
   "files": [
     "index.js",
