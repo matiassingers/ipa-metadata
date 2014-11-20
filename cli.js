@@ -65,7 +65,11 @@ function verboseFormatting(data){
   });
 }
 
-ipaMetadata(cli.input[0], function(data){
+ipaMetadata(cli.input[0], function(error, data){
+  if(error){
+    return console.log(error.message);
+  }
+
   if(cli.flags.verbose){
     return verboseFormatting(data);
   }
@@ -77,10 +81,12 @@ ipaMetadata(cli.input[0], function(data){
 
   var table = new Table();
   _.each(types, function(keys, index) {
-    _.each(keys, function(key) {
-      var value = data[index][key];
-      table.push([key, format(value)]);
-    });
+    if(data[index]){
+      _.each(keys, function(key) {
+        var value = data[index][key];
+        table.push([key, format(value)]);
+      });
+    }
   });
 
   console.log(table.toString());
