@@ -28,7 +28,11 @@
   },
   "homepage": "https://github.com/matiassingers/ipa-metadata-parser",
   "dependencies": {
-    "plist": "~1.1.0"
+    "plist": "1.1.0",
+    "unzip": "0.1.11",
+    "temporary": "0.0.8",
+    "glob": "4.2.0",
+    "rimraf": "2.2.8"
   },
   "devDependencies": {
     "mocha": "*"
