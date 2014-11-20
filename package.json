@@ -1,6 +1,6 @@
 {
   "name": "ipa-metadata",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "extract metadata and provisioning information about an .ipa file",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,16 @@
     "url": "https://github.com/matiassingers/ipa-metadata"
   },
   "author": "Matias Singers <mail@matiassingers.com> (http://mts.io)",
+  "keywords": [
+    "ipa",
+    "ios",
+    "mac",
+    "osx",
+    "provisioning profile",
+    "mobile provisioning",
+    "mobileprovision",
+    "plist"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matiassingers/ipa-metadata/issues"
