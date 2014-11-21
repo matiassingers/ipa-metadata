@@ -23,7 +23,8 @@ module.exports = function (file, callback){
 
       data.metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
 
-      if(!fs.existsSync(path + provisionFilename)){
+      if(!fs.existsSync(path + 'embedded.mobileprovision')){
+        rimraf.sync(output.path);
         return callback(null, data);
       }
 
