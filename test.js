@@ -4,8 +4,8 @@ var assert = require('assert');
 var ipaMetadataParser = require('./');
 
 describe('should parse .ipa file', function(){
-  var error;
-  var output;
+  var error, output;
+
   beforeEach(function(done) {
     ipaMetadataParser('tests/fixtures/testApp.ipa', function(err, data) {
       error = err;
