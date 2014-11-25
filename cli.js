@@ -46,6 +46,10 @@ function verboseFormatting(data){
   });
 }
 
+if(!cli.input[0]){
+  return cli.showHelp();
+}
+
 ipaMetadata(cli.input[0], function(error, data){
   if(error){
     return console.log(error.message);
