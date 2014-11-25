@@ -4,6 +4,7 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var plist = require('plist');
 var unzip = require('unzip');
+var which = require('which');
 
 var rimraf = require('rimraf');
 var tmp = require('temporary');
@@ -34,7 +35,15 @@ module.exports = function (file, callback){
         data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
         delete data.provisioning.DeveloperCertificates;
 
+        if(!which.sync('codesign')){
+          return cleanUp();
+        }
 
+        exec('codesign -d --entitlements - ' + path, function(error, output) {
+          data.entitlements = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
+
+          return cleanUp();
+        });
       });
     });
 

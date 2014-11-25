@@ -44,7 +44,8 @@
     "rimraf": "2.2.8",
     "meow": "2.0.0",
     "cli-table": "0.3.1",
-    "lodash": "2.4.1"
+    "lodash": "2.4.1",
+    "which": "1.0.5"
   },
   "devDependencies": {
     "mocha": "2.0.1",
