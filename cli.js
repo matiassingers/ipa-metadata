@@ -23,18 +23,39 @@ var cli = meow({
   ].join('\n')
 });
 
-function format(value) {
+function format(value, compare) {
   if(!_.isPlainObject(value)) {
     return value;
   }
 
   var string = [];
   _.each(value, function(value, key) {
+    var shouldCompareEquality = cli.flags.verify && compare;
+
+    if(shouldCompareEquality && (key === 'keychain-access-groups')){
+      return string.push(compareKeychainEntitlement(value, key, compare[key]), '\n');
+    }
+
+    if(shouldCompareEquality){
+      var match = value === compare[key];
+      var stringResult = chalk[match ? 'green' : 'red'](key + ': ' + format(value));
+      return string.push(stringResult, '\n');
+    }
+
     string.push(key, ': ', format(value), '\n');
   });
   string.pop();
 
   return string.join('');
+}
+
+function compareKeychainEntitlement(value, key, compare) {
+  function splitKeychain(value) {
+    return value[0].split('.')[0];
+  }
+
+  var match = splitKeychain(value) === splitKeychain(compare);
+  return chalk[match ? 'green' : 'red'](key + ': ' + format(value));
 }
 
 function verboseFormatting(data){
@@ -73,13 +94,7 @@ ipaMetadata(cli.input[0], function(error, data){
     if(data[type]){
       _.each(keys, function(key) {
         var value = data[type][key];
-
-        if(type === 'provisioning' && cli.flags.verify){
-          var match = _.isEqual(data.provisioning[key], data.entitlements[key]);
-          key = key + chalk[match ? 'green' : 'red'](' (' + match + ')');
-        }
-
-        table.push([key, format(value)]);
+        table.push([key, format(value, data.entitlements)]);
       });
     }
   });
