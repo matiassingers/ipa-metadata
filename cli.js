@@ -61,10 +61,10 @@ ipaMetadata(cli.input[0], function(error, data){
   };
 
   var table = new Table();
-  _.each(types, function(keys, index) {
-    if(data[index]){
+  _.each(types, function(keys, type) {
+    if(data[type]){
       _.each(keys, function(key) {
-        var value = data[index][key];
+        var value = data[type][key];
         table.push([key, format(value)]);
       });
     }
