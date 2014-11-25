@@ -39,7 +39,7 @@ module.exports = function (file, callback){
           return cleanUp();
         }
 
-        exec('codesign -d --entitlements - ' + path, function(error, output) {
+        exec('codesign -d --entitlements :- ' + path, function(error, output) {
           data.entitlements = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
 
           return cleanUp();
