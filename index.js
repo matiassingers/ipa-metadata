@@ -23,22 +23,23 @@ module.exports = function (file, callback){
 
       data.metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
 
-      if(!fs.existsSync(path + 'embedded.mobileprovision')){
-        rimraf.sync(output.path);
-        return callback(null, data);
+      if(!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('security')){
+        return cleanUp();
       }
-
       exec('security cms -D -i embedded.mobileprovision > ' + provisionFilename, { cwd: path }, function(error) {
         if(error){
-          return callback(error, data);
+          cleanUp(error);
         }
 
         data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
         delete data.provisioning.DeveloperCertificates;
 
-        rimraf.sync(output.path);
 
-        return callback(null, data);
       });
     });
+
+  function cleanUp(error){
+    rimraf.sync(output.path);
+    return callback(error, data);
+  }
 };
