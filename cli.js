@@ -15,6 +15,9 @@ var cli = meow({
     '',
     '  ipa-metadata Facebook.ipa --verbose',
     '',
+    '  ipa-metadata Facebook.ipa --verify',
+    '  (verifies entitlements between `.app` bundle and embedded.mobileprovision)',
+    '',
     '  => data displayed in a table'
   ].join('\n')
 });
@@ -69,6 +72,11 @@ ipaMetadata(cli.input[0], function(error, data){
     if(data[type]){
       _.each(keys, function(key) {
         var value = data[type][key];
+
+        if(type === 'provisioning' && cli.flags.verify){
+          key = key + ' (' + _.isEqual(data.provisioning[key], data.entitlements[key]) + ')';
+        }
+
         table.push([key, format(value)]);
       });
     }

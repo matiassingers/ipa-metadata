@@ -44,6 +44,8 @@ $ ipa-metadata --help
     
     ipa-metadata Facebook.ipa --verbose
     
+    ipa-metadata Facebook.ipa --verify
+    (verifies entitlements between `.app` bundle and embedded.mobileprovision)
 ```
 
 
