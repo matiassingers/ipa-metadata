@@ -4,6 +4,11 @@
 Inspired by the `ipa info` in [`shenzhen`](https://github.com/nomad/shenzhen/blob/master/lib/shenzhen/commands/info.rb), but I wanted more general metadata information about the `.ipa`.
 I created a [quick Bash script](https://gist.github.com/matiassingers/47663489189abfc8b2a9), but thought I could do a better job with a small NodeJS module.
 
+The CLI is very useful for quickly checking the entitlements of an `.ipa` file (`--verify`), and two types will be returned from the module:
+  - `.app` bundle with [`codesign`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/codesign.1.html)
+  - `embedded.mobileprovision` with [`security`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/security.1.html)
+  
+See [Checking the Entitlements of an .ipa file](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
 ## Install
 
@@ -24,6 +29,9 @@ ipaMetadata('Facebook.ipa', function(data){
   //    { CFBundleName: 'Facebook',
   //      ... },
   //   provisioning:
+  //    { TeamName: 'Facebook Inc.',
+  //      ... } },
+  //   entitlements:
   //    { TeamName: 'Facebook Inc.',
   //      ... } }
 });
