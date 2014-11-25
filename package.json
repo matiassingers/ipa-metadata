@@ -1,6 +1,6 @@
 {
   "name": "ipa-metadata",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "extract metadata and provisioning information about an .ipa file",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/matiassingers/ipa-metadata",
   "dependencies": {
+    "chalk": "^0.5.1",
     "cli-table": "0.3.1",
     "glob": "4.2.1",
     "lodash": "2.4.1",

@@ -7,6 +7,7 @@ var meow = require('meow');
 
 var Table = require('cli-table');
 var _ = require('lodash');
+var chalk = require('chalk');
 
 var cli = meow({
   help: [
@@ -74,7 +75,8 @@ ipaMetadata(cli.input[0], function(error, data){
         var value = data[type][key];
 
         if(type === 'provisioning' && cli.flags.verify){
-          key = key + ' (' + _.isEqual(data.provisioning[key], data.entitlements[key]) + ')';
+          var match = _.isEqual(data.provisioning[key], data.entitlements[key]);
+          key = key + chalk[match ? 'green' : 'red'](' (' + match + ')');
         }
 
         table.push([key, format(value)]);
