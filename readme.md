@@ -8,7 +8,7 @@ The CLI is very useful for quickly checking the entitlements of an `.ipa` file (
   - `.app` bundle with [`codesign`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/codesign.1.html)
   - `embedded.mobileprovision` with [`security`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/security.1.html)
   
-See [Checking the Entitlements of an .ipa file](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
+See ["Checking the Entitlements of an .ipa file"](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
 ## Install
 
