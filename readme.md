@@ -32,7 +32,7 @@ ipaMetadata('Facebook.ipa', function(data){
   //    { TeamName: 'Facebook Inc.',
   //      ... } },
   //   entitlements:
-  //    { TeamName: 'Facebook Inc.',
+  //    { application-identifier: '1234abcd.com.facebook.facebook.',
   //      ... } }
 });
 ```
