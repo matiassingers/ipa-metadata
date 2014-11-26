@@ -1,6 +1,6 @@
 {
   "name": "ipa-metadata",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "extract metadata and provisioning information about an .ipa file",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "node": ">=0.10.0"
   },
   "bin": {
-    "ipa-metadata": "cli.js"
+    "ipa": "cli.js"
   },
   "files": [
     "index.js",
