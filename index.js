@@ -28,10 +28,10 @@ module.exports = function (file, callback){
 
     data.metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
 
-    if(!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('security')){
+    if(!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('openssl')){
       return cleanUp();
     }
-    exec('security cms -D -i embedded.mobileprovision > ' + provisionFilename, { cwd: path }, function(error) {
+    exec('openssl smime -in embedded.mobileprovision -inform der -verify > ' + provisionFilename, { cwd: path }, function(error) {
       if(error){
         cleanUp(error);
       }
