@@ -13,6 +13,7 @@ var glob = require("glob");
 var output = new tmp.Dir();
 
 var provisionFilename = 'Provisioning.plist';
+var CertDownloader = require('./lib/CertDownloader.js')
 
 module.exports = function(file, callback) {
     var data = {};
@@ -31,25 +32,41 @@ module.exports = function(file, callback) {
         if (!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('openssl')) {
             return cleanUp();
         }
-        exec('openssl smime -in embedded.mobileprovision -inform der -verify > ' + provisionFilename, {
-            cwd: path
-        }, function(error) {
-            if (error) {
-                cleanUp(error);
-            }
 
-            data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
-            delete data.provisioning.DeveloperCertificates;
+        var cert = new CertDownloader()
+        cert.pem(function (pemPath, error) {
+          if (error) {
+            cleanUp(error);
+          }
 
-            if (!which.sync('codesign')) {
-                return cleanUp();
-            }
+          exec('openssl smime -in embedded.mobileprovision -inform der -verify -CAfile '+ pemPath +' > ' + provisionFilename, {
+              cwd: path
+          }, function(error) {
+              if (error) {
+                  cleanUp(error);
+              }
 
-            exec('codesign -d --entitlements :- ' + path, function(error, output) {
-                data.entitlements = plist.parse(output);
+              data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
+              delete data.provisioning.DeveloperCertificates;
 
-                return cleanUp();
-            });
+              try {
+                if (!which.sync('codesign')) {
+                    return cleanUp();
+                }
+
+                exec('codesign -d --entitlements :- ' + path, function(error, output) {
+                    data.entitlements = plist.parse(output);
+
+                    return cleanUp();
+                });
+              }
+              catch (e) {
+              }
+              finally {
+                cleanUp()
+              }
+
+          });
         });
     });
 
