@@ -17,8 +17,8 @@ var cli = meow({
         '',
         '  ipa-metadata Facebook.ipa --verbose',
         '',
-        '  ipa-metadata Facebook.ipa --verify',
-        '  (verifies entitlements between `.app` bundle and `embedded.mobileprovision`)',
+        '  ipa-metadata Facebook.ipa --verify ',
+        '  (verifies entitlements between `.app` bundle and `embedded.mobileprovision`. Works only on Mac OS X!)',
         '',
         '  => data displayed in a table'
     ].join('\n')
