@@ -10,6 +10,10 @@ The CLI is very useful for quickly checking the entitlements of an `.ipa` file (
   
 See ["Checking the Entitlements of an .ipa file"](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
+__Note__
+
+The `--verify` flag works only on Mac OS X with Xcode installed. On other systems (or without Xcode installed) it will not checking the entitlements with the provisioning profile. 
+
 ## Install
 
 ```sh
@@ -53,7 +57,7 @@ $ ipa-metadata --help
     ipa-metadata Facebook.ipa --verbose
     
     ipa-metadata Facebook.ipa --verify
-    (verifies entitlements between `.app` bundle and `embedded.mobileprovision`)
+    (verifies entitlements between `.app` bundle and `embedded.mobileprovision`. Works only on Mac OS X!)
 ```
 
 
