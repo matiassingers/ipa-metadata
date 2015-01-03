@@ -6,7 +6,7 @@ I created a [quick Bash script](https://gist.github.com/matiassingers/4766348918
 
 The CLI is very useful for quickly checking the entitlements of an `.ipa` file (`--verify`), and two types will be returned from the module:
   - `.app` bundle with [`codesign`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/codesign.1.html)
-  - `embedded.mobileprovision` with [`security`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/security.1.html)
+  - `embedded.mobileprovision` with [`openssl`](https://www.openssl.org/docs/apps/openssl.html)
   
 See ["Checking the Entitlements of an .ipa file"](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
