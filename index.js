@@ -33,7 +33,7 @@ module.exports = function (file, callback){
     }
     exec('security cms -D -i embedded.mobileprovision > ' + provisionFilename, { cwd: path }, function(error) {
       if(error){
-        cleanUp(error);
+        return cleanUp(error);
       }
 
       data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
