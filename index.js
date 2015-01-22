@@ -36,7 +36,7 @@ module.exports = function (file, callback){
         return cleanUp(error);
       }
 
-      data.provisioning = plist.parse(fs.readFileSync(path + provisionFilename, 'utf8'));
+      data.provisioning = plist.readFileSync(path + provisionFilename);
       delete data.provisioning.DeveloperCertificates;
 
       if(!which.sync('codesign')){
