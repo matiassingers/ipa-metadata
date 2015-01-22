@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var exec = require('child_process').exec;
-var plist = require('plist');
+var plist = require('simple-plist');
 var decompress = require('decompress-zip');
 var which = require('which');
 
@@ -26,7 +26,7 @@ module.exports = function (file, callback){
   unzipper.on('extract', function() {
     var path = glob.sync(output.path + '/Payload/*/')[0];
 
-    data.metadata = plist.parse(fs.readFileSync(path + 'Info.plist', 'utf8'));
+    data.metadata = plist.readFileSync(path + 'Info.plist');
 
     if(!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('security')){
       return cleanUp();
