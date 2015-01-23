@@ -5,14 +5,13 @@ var exec = require('child_process').exec;
 var plist = require('simple-plist');
 var decompress = require('decompress-zip');
 var which = require('which');
+var provisioning = require('provisioning');
 
 var rimraf = require('rimraf');
 var tmp = require('temporary');
 var glob = require("glob");
 
 var output = new tmp.Dir();
-
-var provisionFilename = 'Provisioning.plist';
 
 module.exports = function (file, callback){
   var data = {};
@@ -28,15 +27,16 @@ module.exports = function (file, callback){
 
     data.metadata = plist.readFileSync(path + 'Info.plist');
 
-    if(!fs.existsSync(path + 'embedded.mobileprovision') || !which.sync('security')){
+    if(!fs.existsSync(path + 'embedded.mobileprovision')){
       return cleanUp();
     }
-    exec('security cms -D -i embedded.mobileprovision > ' + provisionFilename, { cwd: path }, function(error) {
+
+    provisioning(path + 'embedded.mobileprovision', function(error, output){
       if(error){
         return cleanUp(error);
       }
 
-      data.provisioning = plist.readFileSync(path + provisionFilename);
+      data.provisioning = output;
       delete data.provisioning.DeveloperCertificates;
 
       if(!which.sync('codesign')){

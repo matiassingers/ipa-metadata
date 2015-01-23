@@ -43,6 +43,7 @@
     "glob": "4.3.5",
     "lodash": "2.4.1",
     "meow": "2.0.0",
+    "provisioning": "1.0.0",
     "rimraf": "2.2.8",
     "simple-plist": "0.0.4",
     "temporary": "0.0.8",
