@@ -32,12 +32,12 @@ module.exports = function (file, callback){
       return cleanUp();
     }
 
-    provisioning(path + 'embedded.mobileprovision', function(error, output){
+    provisioning(path + 'embedded.mobileprovision', function(error, provision){
       if(error){
         return cleanUp(error);
       }
 
-      data.provisioning = output;
+      data.provisioning = provision;
       delete data.provisioning.DeveloperCertificates;
 
       if(!which.sync('codesign')){
