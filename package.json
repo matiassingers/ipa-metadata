@@ -1,6 +1,6 @@
 {
   "name": "ipa-metadata",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "extract metadata and provisioning information about an .ipa file",
   "main": "index.js",
   "scripts": {
@@ -44,7 +44,7 @@
     "lodash": "2.4.1",
     "meow": "2.0.0",
     "rimraf": "2.2.8",
-    "simple-plist": "0.0.3",
+    "simple-plist": "0.0.4",
     "temporary": "0.0.8",
     "which": "1.0.8"
   },
