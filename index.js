@@ -6,6 +6,7 @@ var plist = require('simple-plist');
 var decompress = require('decompress-zip');
 var which = require('which');
 var provisioning = require('provisioning');
+var entitlements = require('entitlements');
 
 var rimraf = require('rimraf');
 var tmp = require('temporary');
@@ -43,8 +44,8 @@ module.exports = function (file, callback){
         return cleanUp();
       }
 
-      exec('codesign -d --entitlements :- ' + path, function(error, output) {
-        data.entitlements = plist.parse(output);
+      entitlements(path, function(error, entitlement) {
+        data.entitlements = entitlement;
 
         return cleanUp();
       });

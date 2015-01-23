@@ -40,6 +40,7 @@
     "chalk": "0.5.1",
     "cli-table": "0.3.1",
     "decompress-zip": "0.0.8",
+    "entitlements": "1.0.0",
     "glob": "4.3.5",
     "lodash": "2.4.1",
     "meow": "2.0.0",
