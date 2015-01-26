@@ -6,8 +6,6 @@ var ipaMetadataParser = require('./');
 describe('should parse .ipa file', function(){
   it('should contain the correct data', function(done) {
     ipaMetadataParser('tests/fixtures/testApp.ipa', function(err, data) {
-      assert.equal(err, void 0);
-
       assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
       assert.equal(data.metadata['CFBundleIdentifier'], 'io.mts.testapp');
       assert.equal(data.metadata['CFBundleName'], 'Test App');
@@ -22,8 +20,6 @@ describe('should parse .ipa file', function(){
 describe('should parse .ipa files with binary .plist files', function(){
   it('should contain the correct data', function(done) {
     ipaMetadataParser('tests/fixtures/testApp-binaryPlist.ipa', function(err, data) {
-      assert.equal(err, void 0);
-
       assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
       assert.equal(data.metadata['CFBundleIdentifier'], 'io.mts.testapp');
       assert.equal(data.metadata['CFBundleName'], 'Test App');
