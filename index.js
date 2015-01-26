@@ -1,10 +1,7 @@
 'use strict';
 
-var fs = require('fs');
-var exec = require('child_process').exec;
 var plist = require('simple-plist');
 var decompress = require('decompress-zip');
-var which = require('which');
 var provisioning = require('provisioning');
 var entitlements = require('entitlements');
 
