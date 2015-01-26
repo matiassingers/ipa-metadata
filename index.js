@@ -1,5 +1,6 @@
 'use strict';
 
+var async = require('async');
 var plist = require('simple-plist');
 var decompress = require('decompress-zip');
 var provisioning = require('provisioning');
@@ -25,27 +26,20 @@ module.exports = function (file, callback){
 
     data.metadata = plist.readFileSync(path + 'Info.plist');
 
-    if(!fs.existsSync(path + 'embedded.mobileprovision')){
-      return cleanUp();
-    }
-
-    provisioning(path + 'embedded.mobileprovision', function(error, provision){
+    async.parallel([
+      async.apply(provisioning, path + 'embedded.mobileprovision'),
+      async.apply(entitlements, path)
+    ], function(error, results){
       if(error){
         return cleanUp(error);
       }
 
-      data.provisioning = provision;
+      data.provisioning = results[0];
       delete data.provisioning.DeveloperCertificates;
 
-      if(!which.sync('codesign')){
-        return cleanUp();
-      }
+      data.entitlements = results[1];
 
-      entitlements(path, function(error, entitlement) {
-        data.entitlements = entitlement;
-
-        return cleanUp();
-      });
+      return cleanUp();
     });
   });
 
