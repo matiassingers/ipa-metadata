@@ -48,8 +48,7 @@
     "provisioning": "1.1.0",
     "rimraf": "2.2.8",
     "simple-plist": "0.0.4",
-    "temporary": "0.0.8",
-    "which": "1.0.8"
+    "temporary": "0.0.8"
   },
   "devDependencies": {
     "mocha": "2.1.0",
