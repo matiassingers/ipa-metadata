@@ -57,6 +57,13 @@ $ ipa-metadata --help
 ```
 
 
+## Related
+- [`grunt-xcode`](https://github.com/matiassingers/grunt-xcode)
+- [`apn-test`](https://github.com/matiassingers/apn-test)
+- [`entitlements`](https://github.com/matiassingers/entitlements)
+- [`provisioning`](https://github.com/matiassingers/provisioning)
+
+
 ## License
 
 MIT © [Matias Singers](http://mts.io)
