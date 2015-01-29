@@ -23,6 +23,8 @@ var cli = meow({
   ].join('\n')
 });
 
+var verificationFailed;
+
 function format(value, compare) {
   if(!_.isPlainObject(value)) {
     return value;
@@ -57,6 +59,10 @@ function compareKeychainEntitlement(value, key, compare) {
 
 function compareOutputString(value, target, key) {
   var match = value === target;
+
+  if(!match){
+    verificationFailed = true;
+  }
 
   return chalk[match ? 'green' : 'red'](key + ': ' + format(value));
 }
@@ -103,4 +109,5 @@ ipaMetadata(cli.input[0], function(error, data){
   });
 
   console.log(table.toString());
+  process.exit(verificationFailed);
 });
