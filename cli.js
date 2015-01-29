@@ -32,17 +32,15 @@ function format(value, compare) {
   _.each(value, function(value, key) {
     var shouldCompareEquality = cli.flags.verify && compare;
 
-    if(shouldCompareEquality && (key === 'keychain-access-groups')){
+    if(!shouldCompareEquality){
+      return string.push(key, ': ', format(value), '\n');
+    }
+
+    if(key === 'keychain-access-groups'){
       return string.push(compareKeychainEntitlement(value, key, compare[key]), '\n');
     }
 
-    if(shouldCompareEquality){
-      var match = value === compare[key];
-      var stringResult = chalk[match ? 'green' : 'red'](key + ': ' + format(value));
-      return string.push(stringResult, '\n');
-    }
-
-    string.push(key, ': ', format(value), '\n');
+    return string.push(compareOutputString(value, compare[key], key), '\n');
   });
   string.pop();
 
@@ -54,7 +52,12 @@ function compareKeychainEntitlement(value, key, compare) {
     return value[0].split('.')[0];
   }
 
-  var match = splitKeychain(value) === splitKeychain(compare);
+  return compareOutputString(splitKeychain(value), splitKeychain(compare), key);
+}
+
+function compareOutputString(value, target, key) {
+  var match = value === target;
+
   return chalk[match ? 'green' : 'red'](key + ': ' + format(value));
 }
 
