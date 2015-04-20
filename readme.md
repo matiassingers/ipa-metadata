@@ -22,7 +22,7 @@ $ npm install --save ipa-metadata
 ```js
 var ipaMetadata = require('ipa-metadata');
 
-ipaMetadata('Facebook.ipa', function(data){
+ipaMetadata('Facebook.ipa', function(error, data){
   console.log(data);
   
   // { metadata: 
