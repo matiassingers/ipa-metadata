@@ -10,6 +10,8 @@ The CLI is very useful for quickly checking the entitlements of an `.ipa` file (
   
 See ["Checking the Entitlements of an .ipa file"](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
+**Note:** the severe lack of naming convention in the properties, I'm preserving their original naming - see #7.
+
 ## Install
 
 ```sh
