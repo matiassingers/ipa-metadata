@@ -35,6 +35,8 @@ module.exports = function (file, callback){
       }
 
       data.provisioning = results[0];
+
+      // Hard to serialize and it looks messy in output
       delete data.provisioning.DeveloperCertificates;
 
       data.entitlements = results[1];
