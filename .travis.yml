@@ -1,8 +1,11 @@
+sudo: false
 language: node_js
 node_js:
+  - 'iojs'
   - '0.12'
   - '0.10'
-  - 'iojs'
+
+script: 'npm run coverage'
 
 after_success:
-  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
