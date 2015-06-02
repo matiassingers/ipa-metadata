@@ -37,23 +37,23 @@
   },
   "homepage": "https://github.com/matiassingers/ipa-metadata",
   "dependencies": {
-    "async": "0.9.0",
+    "async": "1.1.0",
     "chalk": "1.0.0",
     "cli-table": "0.3.1",
-    "decompress-zip": "0.1.0",
-    "entitlements": "1.1.0",
-    "glob": "5.0.5",
-    "lodash": "3.6.0",
+    "decompress-zip": "0.2.0",
+    "entitlements": "1.2.0",
+    "glob": "5.0.10",
+    "lodash": "3.9.3",
     "meow": "3.1.0",
-    "provisioning": "1.1.0",
-    "rimraf": "2.3.2",
+    "provisioning": "1.2.0",
+    "rimraf": "2.3.4",
     "simple-plist": "0.0.4",
     "temporary": "0.0.8"
   },
   "devDependencies": {
-    "mocha": "2.2.4",
+    "mocha": "2.2.5",
     "mocha-lcov-reporter": "0.0.2",
-    "istanbul": "0.3.13",
+    "istanbul": "0.3.14",
     "coveralls": "2.11.2"
   }
 }
