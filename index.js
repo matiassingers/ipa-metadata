@@ -30,6 +30,7 @@ module.exports = function (file, callback){
       async.apply(provisioning, path + 'embedded.mobileprovision')
     ];
 
+    // `entitlements` relies on a OS X only CLI tool called `codesign`
     if(process.platform === 'darwin'){
       tasks.push(async.apply(entitlements, path));
     }
