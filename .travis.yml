@@ -7,5 +7,11 @@ node_js:
 
 script: 'npm run coverage'
 
+addons:
+  code_climate:
+    repo_token: 2ca3290a5f2343f15a5df5a2fefbeb39d7a0d2886548fba41cc44aa746d60aaf
+
 after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info
+  - ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info
+  - rm -rf ./coverage
