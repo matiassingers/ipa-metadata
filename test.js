@@ -12,6 +12,9 @@ describe('should parse .ipa file', function(){
       assert.equal(data.metadata['CFBundleShortVersionString'], '1.0.0');
       assert.equal(data.metadata['CFBundleVersion'], '1337');
 
+      // Property is only set on OS X
+      assert.equal(data.entitlements, void 0);
+
       done();
     });
   });
@@ -25,6 +28,9 @@ describe('should parse .ipa files with binary .plist files', function(){
       assert.equal(data.metadata['CFBundleName'], 'Test App');
       assert.equal(data.metadata['CFBundleShortVersionString'], '1.0.0');
       assert.equal(data.metadata['CFBundleVersion'], '1337');
+
+      // Property is only set on OS X
+      assert.equal(data.entitlements, void 0);
 
       done();
     });
