@@ -26,10 +26,16 @@ module.exports = function (file, callback){
 
     data.metadata = plist.readFileSync(path + 'Info.plist');
 
-    async.parallel([
-      async.apply(provisioning, path + 'embedded.mobileprovision'),
-      async.apply(entitlements, path)
-    ], function(error, results){
+    var tasks = [
+      async.apply(provisioning, path + 'embedded.mobileprovision')
+    ];
+
+    // `entitlements` relies on a OS X only CLI tool called `codesign`
+    if(process.platform === 'darwin'){
+      tasks.push(async.apply(entitlements, path));
+    }
+
+    async.parallel(tasks, function(error, results){
       if(error){
         return cleanUp(error);
       }
@@ -39,6 +45,7 @@ module.exports = function (file, callback){
       // Hard to serialize and it looks messy in output
       delete data.provisioning.DeveloperCertificates;
 
+      // Will be undefined on non-OSX platforms
       data.entitlements = results[1];
 
       return cleanUp();
