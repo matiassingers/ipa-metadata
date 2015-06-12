@@ -30,7 +30,7 @@ describe('ipa-metadata', function() {
 
     describe('should parse .ipa file', function() {
       it('should contain the correct data', function(done) {
-        ipaMetadataParser('tests/fixtures/testApp.ipa', function(err, data) {
+        ipaMetadataParser('fixtures/testApp.ipa', function(err, data) {
           assert.equal(err, void 0);
 
           assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
@@ -49,7 +49,7 @@ describe('ipa-metadata', function() {
 
     describe('should parse .ipa files with binary .plist files', function() {
       it('should contain the correct data', function(done) {
-        ipaMetadataParser('tests/fixtures/testApp-binaryPlist.ipa', function(err, data) {
+        ipaMetadataParser('fixtures/testApp-binaryPlist.ipa', function(err, data) {
           assert.equal(err, void 0);
 
           assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
@@ -82,7 +82,7 @@ describe('ipa-metadata', function() {
     });
 
     it('should contain the correct data', function(done) {
-      ipaMetadataParser('tests/fixtures/testApp-binaryPlist.ipa', function(err, data) {
+      ipaMetadataParser('fixtures/testApp-binaryPlist.ipa', function(err, data) {
         assert.equal(err, void 0);
 
         assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
@@ -115,7 +115,7 @@ describe('ipa-metadata', function() {
     });
 
     it('should contain the correct data', function(done) {
-      ipaMetadataParser('tests/fixtures/testApp-binaryPlist.ipa', function(err, data) {
+      ipaMetadataParser('fixtures/testApp-binaryPlist.ipa', function(err, data) {
         assert.equal(err, 'fake error');
 
         assert.equal(data.metadata['CFBundleDisplayName'], 'Test App');
