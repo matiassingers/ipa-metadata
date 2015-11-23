@@ -12,11 +12,11 @@ var chalk = require('chalk');
 var cli = meow({
   help: [
     'Example',
-    '  ipa-metadata Facebook.ipa',
+    '  ipa Facebook.ipa',
     '',
-    '  ipa-metadata Facebook.ipa --verbose',
+    '  ipa Facebook.ipa --verbose',
     '',
-    '  ipa-metadata Facebook.ipa --verify',
+    '  ipa Facebook.ipa --verify',
     '  (verifies entitlements between `.app` bundle and `embedded.mobileprovision`)',
     '',
     '  => data displayed in a table'

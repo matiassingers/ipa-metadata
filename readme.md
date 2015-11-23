@@ -7,7 +7,7 @@ I created a [quick Bash script](https://gist.github.com/matiassingers/4766348918
 The CLI is very useful for quickly checking the entitlements of an `.ipa` file (`--verify`), and two types will be returned from the module:
   - `.app` bundle with [`codesign`]
   - `embedded.mobileprovision` with [`security`]
-  
+
 See ["Checking the Entitlements of an .ipa file"](https://developer.apple.com/library/ios/qa/qa1798/_index.html#//apple_ref/doc/uid/DTS40014167-CH1-INSPECT_IPA) for more information
 
 **Note:** the severe lack of naming convention in the properties, I'm preserving their original naming - see [#7](https://github.com/matiassingers/ipa-metadata/issues/7).
@@ -28,8 +28,8 @@ var ipaMetadata = require('ipa-metadata');
 
 ipaMetadata('Facebook.ipa', function(error, data){
   console.log(data);
-  
-  // { metadata: 
+
+  // { metadata:
   //    { CFBundleName: 'Facebook',
   //      ... },
   //   provisioning:
@@ -49,14 +49,14 @@ $ npm install --global ipa-metadata
 ```
 
 ```sh
-$ ipa-metadata --help
+$ ipa --help
 
   Example
-    ipa-metadata Facebook.ipa
-    
-    ipa-metadata Facebook.ipa --verbose
-    
-    ipa-metadata Facebook.ipa --verify
+    ipa Facebook.ipa
+
+    ipa Facebook.ipa --verbose
+
+    ipa Facebook.ipa --verify
     (verifies entitlements between `.app` bundle and `embedded.mobileprovision`)
 ```
 
