@@ -9,6 +9,7 @@ var entitlements = require('entitlements');
 var rimraf = require('rimraf');
 var tmp = require('temporary');
 var glob = require("glob");
+var Path = require('path');
 
 var output = new tmp.Dir();
 
@@ -24,10 +25,11 @@ module.exports = function (file, callback){
   unzipper.on('extract', function() {
     var path = glob.sync(output.path + '/Payload/*/')[0];
 
-    data.metadata = plist.readFileSync(path + 'Info.plist');
+    data.metadata = plist.readFileSync(Path.join(path, 'Info.plist'));
+    path = path.replace(/ /g, '\\ ');
 
     var tasks = [
-      async.apply(provisioning, path + 'embedded.mobileprovision')
+      async.apply(provisioning, Path.join(path, 'embedded.mobileprovision'))
     ];
 
     // `entitlements` relies on a OS X only CLI tool called `codesign`
