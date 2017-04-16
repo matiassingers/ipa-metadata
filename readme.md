@@ -1,4 +1,6 @@
 # ipa-metadata [![Build Status](http://img.shields.io/travis/matiassingers/ipa-metadata.svg?style=flat-square)](https://travis-ci.org/matiassingers/ipa-metadata) [![Dependency Status](http://img.shields.io/gemnasium/matiassingers/ipa-metadata.svg?style=flat-square)](https://gemnasium.com/matiassingers/ipa-metadata) [![Coverage Status](http://img.shields.io/coveralls/matiassingers/ipa-metadata.svg?style=flat-square)](https://coveralls.io/r/matiassingers/ipa-metadata)
+
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/matiassingers/ipa-metadata?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > extract metadata and provisioning information about an .ipa file
 
 Inspired by the `ipa info` in [`shenzhen`](https://github.com/nomad/shenzhen/blob/master/lib/shenzhen/commands/info.rb), but I wanted more general metadata information about the `.ipa`.
