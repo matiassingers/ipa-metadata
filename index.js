@@ -10,10 +10,9 @@ var rimraf = require('rimraf');
 var tmp = require('temporary');
 var glob = require("glob");
 
-var output = new tmp.Dir();
-
 module.exports = function (file, callback){
   var data = {};
+  var output = new tmp.Dir();
 
   var unzipper = new decompress(file);
   unzipper.extract({
